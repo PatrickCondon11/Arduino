@@ -6,12 +6,12 @@
  *approaching vehicles that are in your
  *blind spot*/
 
-#define trigPin 2
-#define echoPin 3
-#define LEDlampRed 4
-#define  LEDlampYellow 5
-#define LEDlampGreen 6 
-#define soundbuzzer 7
+int trigPin = 7;
+int echoPin = 6;
+int LEDlampGreen = 9;
+int  LEDlampRed = 10;
+int LEDlampBlue = 11;
+int soundbuzzer 7;
 int sound  = 500;
 
 
@@ -20,7 +20,7 @@ void setup() {
   pinMode(trigPin,  OUTPUT);
   pinMode(echoPin, INPUT);
   pinMode(LEDlampRed, OUTPUT);
-  pinMode(LEDlampYellow,  OUTPUT);
+  pinMode(LEDlampBlue,  OUTPUT);
   pinMode(LEDlampGreen, OUTPUT);
   pinMode(soundbuzzer, OUTPUT);
 }
@@ -42,10 +42,10 @@ void  loop() {
   }
   
   if (distance < 20) {
-    digitalWrite(LEDlampYellow,  HIGH);
+    digitalWrite(LEDlampBlue,  HIGH);
 }
   else {
-    digitalWrite(LEDlampYellow,LOW);
+    digitalWrite(LEDlampBlue,LOW);
   }
   if (distance  < 5) {
     digitalWrite(LEDlampRed, HIGH);
