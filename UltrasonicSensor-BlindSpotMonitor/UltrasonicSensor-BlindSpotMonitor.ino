@@ -11,7 +11,7 @@ int echoPin = 6;
 int LEDlampGreen = 9;
 int  LEDlampRed = 10;
 int LEDlampBlue = 11;
-int soundbuzzer 7;
+int soundbuzzer 3;
 int sound  = 500;
 
 
@@ -41,13 +41,13 @@ void  loop() {
       digitalWrite(LEDlampGreen,  LOW);
   }
   
-  if (distance < 20) {
+  if (distanceincm < 20) {
     digitalWrite(LEDlampBlue,  HIGH);
 }
   else {
     digitalWrite(LEDlampBlue,LOW);
   }
-  if (distance  < 5) {
+  if (distanceincm < 5) {
     digitalWrite(LEDlampRed, HIGH);
     sound = 1000;
 }
@@ -55,14 +55,14 @@ void  loop() {
     digitalWrite(LEDlampRed,LOW);
   }
  
-  if (distanceincm > 5 ||  distanceinsm <= 0){
+  if (distanceincm > 5 ||  distanceincm <= 0){
     Serial.println("Outside the permissible range of distances");
     noTone(soundbuzzer);
   }
   else {
-    Serial.print(distance);
+    Serial.print(distanceincm);
     Serial.println("  cm");
-    tone(buzzer, sound);
+    tone(soundbuzzer, sound);
   }
   
   delay(300);
