@@ -23,7 +23,7 @@
 */
 #import "arduinoFFT.h"
 const int Samples = 128;         //Samples-pt FFT. Must  be a base 2 number. Max 128 for Arduino Uno.
-int Sampling_Frequency = 2048;  //Ts = Based on Nyquist, must be 2 times the highest expected frequency.
+int Sampling_Frequency = 4096;  //Ts = Based on Nyquist, must be 2 times the highest expected frequency.
  
 arduinoFFT  FFT = arduinoFFT();
  
@@ -64,7 +64,5 @@ void loop()
     /*Find peak frequency and print peak*/
     double peak = FFT.MajorPeak(vReal,  Samples, Sampling_Frequency);
     Serial.println(peak);     //Print out the most  dominant frequency.
- 
-    /*Script stops here. Hardware reset required.*/
-    while (1); //do one time
+
 }
