@@ -19,19 +19,17 @@
  For more information visit https://clydelettsome.com/blog/2019/12/18/my-weekend-project-audio-frequency-detector-using-an-arduino/
 
 */
-
-#include  "arduinoFFT.h"
- 
-#define SAMPLES 128             //SAMPLES-pt FFT. Must  be a base 2 number. Max 128 for Arduino Uno.
-#define SAMPLING_FREQUENCY 2048  //Ts = Based on Nyquist, must be 2 times the highest expected frequency.
+#import "arduinoFFT.h"
+int SAMPLES = 128;         //SAMPLES-pt FFT. Must  be a base 2 number. Max 128 for Arduino Uno.
+int SAMPLING_FREQUENCY = 2048;  //Ts = Based on Nyquist, must be 2 times the highest expected frequency.
  
 arduinoFFT  FFT = arduinoFFT();
  
 unsigned int samplingPeriod;
 unsigned long microSeconds;
   
-double vReal[SAMPLES]; //create vector of size SAMPLES to hold real values
-double  vImag[SAMPLES]; //create vector of size SAMPLES to hold imaginary values
+double vReal[int SAMPLES]; //create vector of size SAMPLES to hold real values
+double  vImag[int SAMPLES]; //create vector of size SAMPLES to hold imaginary values
  
 void  setup() 
 {
