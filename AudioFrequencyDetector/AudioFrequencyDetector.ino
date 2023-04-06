@@ -1,3 +1,5 @@
+#include <arduinoFFT.h>
+
 /*
  File/Sketch Name: AudioFrequencyDetector
 
@@ -20,47 +22,47 @@
 
 */
 #import "arduinoFFT.h"
-int SAMPLES = 128;         //SAMPLES-pt FFT. Must  be a base 2 number. Max 128 for Arduino Uno.
-int SAMPLING_FREQUENCY = 2048;  //Ts = Based on Nyquist, must be 2 times the highest expected frequency.
+const int Samples = 128;         //Samples-pt FFT. Must  be a base 2 number. Max 128 for Arduino Uno.
+int Sampling_Frequency = 2048;  //Ts = Based on Nyquist, must be 2 times the highest expected frequency.
  
 arduinoFFT  FFT = arduinoFFT();
  
 unsigned int samplingPeriod;
 unsigned long microSeconds;
-  
-double vReal[int SAMPLES]; //create vector of size SAMPLES to hold real values
-double  vImag[int SAMPLES]; //create vector of size SAMPLES to hold imaginary values
+
+double vReal[Samples]; //create vector of size Samples to hold real values
+double vImag[Samples]; //create vector of size Samples to hold imaginary values
  
 void  setup() 
 {
     Serial.begin(115200); //Baud rate for the Serial Monitor
-    samplingPeriod = round(1000000*(1.0/SAMPLING_FREQUENCY)); //Period in microseconds  
+    samplingPeriod = round(1000000*(1.0/Sampling_Frequency)); //Period in microseconds  
 }
  
 void loop() 
 {  
-    /*Sample SAMPLES times*/
-    for(int  i=0; i<SAMPLES; i++)
+    /*Sample Samples times*/
+    for(int  i=0; i<Samples; i++)
     {
         microSeconds = micros();    //Returns the  number of microseconds since the Arduino board began running the current script.  
      
-        vReal[i] = analogRead(0); //Reads the value from analog pin  0 (A0), quantize it and save it as a real term.
+        vReal[i]= analogRead(0); //Reads the value from analog pin  0 (A0), quantize it and save it as a real term.
         vImag[i] = 0; //Makes  imaginary term 0 always
 
-        /*remaining wait time between samples if  necessary*/
+        /*remaining wait time between Samples if  necessary*/
         while(micros() < (microSeconds + samplingPeriod))
         {
           //do nothing
         }
     }
  
-    /*Perform FFT on samples*/
-    FFT.Windowing(vReal, SAMPLES, FFT_WIN_TYP_HAMMING, FFT_FORWARD);
-    FFT.Compute(vReal,  vImag, SAMPLES, FFT_FORWARD);
-    FFT.ComplexToMagnitude(vReal, vImag, SAMPLES);
+    /*Perform FFT on Samples*/
+    FFT.Windowing(vReal, Samples, FFT_WIN_TYP_HAMMING, FFT_FORWARD);
+    FFT.Compute(vReal,  vImag, Samples, FFT_FORWARD);
+    FFT.ComplexToMagnitude(vReal, vImag, Samples);
 
     /*Find peak frequency and print peak*/
-    double peak = FFT.MajorPeak(vReal,  SAMPLES, SAMPLING_FREQUENCY);
+    double peak = FFT.MajorPeak(vReal,  Samples, Sampling_Frequency);
     Serial.println(peak);     //Print out the most  dominant frequency.
  
     /*Script stops here. Hardware reset required.*/
