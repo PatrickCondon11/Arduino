@@ -1,36 +1,33 @@
-*
- * Arduino Keypad calculator Program
- */
+/*
+* Arduino Keypad calculator Program
+*/
 
 #include <LiquidCrystal.h>
   //Header file for LCD from https://www.arduino.cc/en/Reference/LiquidCrystal
-#include
-  <Keypad.h> //Header file for Keypad from https://github.com/Chris--A/Keypad
+#include <Keypad.h>
+  //Header file for Keypad from https://github.com/Chris--A/Keypad
 
 const
   byte ROWS = 4; // Four rows
 const byte COLS = 4; // Three columns
 
-// Define
-  the Keymap
+// Define the Keymap
 char keys[ROWS][COLS] = {
 
-  {'7','8','9','D'},
+  {'1','2','3','A'},
 
-  {'4','5','6','C'},
+{'4','5','6','B'},
 
+{'7','8','9','C'},
 
-  {'1','2','3','B'},
-
-  {'*','0','#','A'}
+{'*','0','#','D'}
 
 };
 
 byte rowPins[ROWS]
   = { 0, 1, 2, 3 };// Connect keypad ROW0, ROW1, ROW2 and ROW3 to these Arduino pins.
 byte
-  colPins[COLS] = { 4, 5, 6, 7 }; // Connect keypad COL0, COL1 and COL2 to these Arduino
-  pins.
+  colPins[COLS] = { 4, 5, 6, 7 }; // Connect keypad COL0, COL1 and COL2 to these Arduino pins.
 
 Keypad kpd = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS
   ); //  Create the Keypad
@@ -46,8 +43,7 @@ LiquidCrystal lcd(rs, en, d4, d5,
   = false;
  
 void setup() {
-  lcd.begin(16, 2); //We are using a 16*2 LCD
-  display
+  lcd.begin(16, 2); //We are using a 16*2 LCD display
   lcd.print("DIY Calculator"); //Display a intro message
   lcd.setCursor(0,
   1);   // set the cursor to column 0, line 1
@@ -93,8 +89,7 @@ void
   = (Number*10) + 1; //Pressed twice
     }
     
-     if (key == '4') //If
-  Button 4 is pressed
+     if (key == '4') //If Button 4 is pressed
     {Serial.println ("Button 4"); 
     if (Number==0)
 
@@ -105,8 +100,7 @@ void
 
     
      if (key == '7') //If Button 7 is pressed
-    {Serial.println ("Button
-  7");
+    {Serial.println ("Button 7");
     if (Number==0)
     Number=7;
     else
@@ -132,13 +126,11 @@ void
   (Number==0)
     Number=2;
     else
-    Number = (Number*10) + 2; //Pressed
-  twice
+    Number = (Number*10) + 2; //Pressed twice
     }
     
      if (key == '5')
-    {Serial.println ("Button
-  5"); 
+    {Serial.println ("Button5"); 
      if (Number==0)
     Number=5;
     else
@@ -248,7 +240,6 @@ void DisplayResult()
   {lcd.print(" ="); lcd.print(Number);}
   //Display the result
   
-  lcd.setCursor(0, 1);   // set the cursor to column
-  0, line 1
+  lcd.setCursor(0, 1);   // set the cursor to column 0, line 1
   lcd.print(Number); //Display the result
 }
